@@ -98,7 +98,7 @@ namespace :rsync do
   task :set_current_revision do
     run_locally do
       within fetch(:rsync_stage) do
-        rev = capture(:git, 'rev-parse', '--short', 'HEAD')
+        rev = capture(:git, 'describe', '--tags', '--long', '--always')
         set :current_revision, rev
       end
     end
